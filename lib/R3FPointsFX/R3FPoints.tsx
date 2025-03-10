@@ -1,4 +1,4 @@
-import { useFrame, createPortal, PointsProps } from "@react-three/fiber"
+import { useFrame, createPortal, ThreeElements } from "@react-three/fiber"
 import {
   useMemo,
   useRef,
@@ -44,6 +44,8 @@ type attribute = {
   array: THREE.TypedArray
   itemSize: number
 }
+
+type PointsProps = ThreeElements["points"]
 
 type properties = PointsProps & {
   modelsArray: THREE.Mesh[]
@@ -276,6 +278,7 @@ const R3FPointsFX = forwardRef<R3FPointsFXRefType, properties>(
           <mesh ref={meshRef}>
             <bufferGeometry>
               <bufferAttribute
+                args={[positions, positions.length / 3]}
                 attach="attributes-position"
                 count={positions.length / 3}
                 array={positions}
@@ -283,6 +286,7 @@ const R3FPointsFX = forwardRef<R3FPointsFXRefType, properties>(
               />
               <bufferAttribute
                 attach="attributes-uv"
+                args={[uvs, uvs.length / 3]}
                 count={uvs.length / 2}
                 array={uvs}
                 itemSize={2}
@@ -299,6 +303,7 @@ const R3FPointsFX = forwardRef<R3FPointsFXRefType, properties>(
         <points ref={points} {...meshProps}>
           <bufferGeometry>
             <bufferAttribute
+              args={[particlesPosition, particlesPosition.length / 3]}
               attach="attributes-position"
               count={particlesPosition.length / 3}
               array={particlesPosition}
@@ -307,6 +312,7 @@ const R3FPointsFX = forwardRef<R3FPointsFXRefType, properties>(
             {attributes.map((attribute, index) => {
               return (
                 <bufferAttribute
+                args={[attribute.array, attribute.array.length / attribute.itemSize]}
                   key={index}
                   attach={`attributes-${attribute.name}`}
                   count={attribute.array.length / attribute.itemSize}
