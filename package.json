@@ -31,13 +31,13 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@react-three/drei": "^9.87.0"
+    "@react-three/drei": "^10.0.4"
   },
   "peerDependencies": {
-    "@react-three/fiber": "^8.14.5",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "three": "^0.157.0"
+    "@react-three/fiber": "^9.1.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "three": "^0.174.0"
   },
   "devDependencies": {
     "@leva-ui/plugin-bezier": "^0.9.19",
